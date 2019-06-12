@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 public class GameManager_sc : MonoBehaviour {
 
@@ -17,10 +18,31 @@ public class GameManager_sc : MonoBehaviour {
     GameObject note;
     NoteObj_sc note_sc;
 
+    Dictionary<KeyCode, Action> keyDictionary;
+    GameObject cube1, cube2, cube3, cube4, cube5;
+    Cube_sc cc1, cc2, cc3, cc4, cc5;
+    int cur;
+
     //IEnumerator Start () {
     void Start () {
         
         Debug.Log("----GameManager:Start()----");
+        keyDictionary = new Dictionary<KeyCode, Action> {
+            { KeyCode.LeftArrow, KeyL },
+            { KeyCode.RightArrow, KeyR }
+        };
+        cube1 = GameObject.Find("Cube_1");
+        cube2 = GameObject.Find("Cube_2");
+        cube3 = GameObject.Find("Cube_3");
+        cube4 = GameObject.Find("Cube_4");
+        cube5 = GameObject.Find("Cube_5");
+        cc1 = (Cube_sc)cube1.GetComponent(typeof(Cube_sc));
+        cc2 = (Cube_sc)cube2.GetComponent(typeof(Cube_sc));
+        cc3 = (Cube_sc)cube3.GetComponent(typeof(Cube_sc));
+        cc4 = (Cube_sc)cube4.GetComponent(typeof(Cube_sc));
+        cc5 = (Cube_sc)cube5.GetComponent(typeof(Cube_sc));
+        cur = 3;
+        Key3();
 
         // bms file
         string[] lineData = File.ReadAllLines("Assets/Resources/BmsFiles/Lovely_Summer.bms");
@@ -42,7 +64,7 @@ public class GameManager_sc : MonoBehaviour {
         GameObject lineCenter = GameObject.Find("LineCenter");
 
         // set y position of destroying note
-        float destroyDelayPositionY = 35.04f; // distance between top line to judgment line
+        float destroyDelayPositionY = 35f; // distance between top line to judgment line
 
         // set width rate of note
         float noteWidthRate = 1.8f;
@@ -79,6 +101,7 @@ public class GameManager_sc : MonoBehaviour {
             note_sc.destroyPositionY = startPositionY - destroyDelayPositionY;
             note_sc.destroyDelayTime = destroyDelayTime;
             note_sc.noteTime = barTime;
+            note_sc.channel = 0;
             bar_Line.Add(note_sc);
             barCount++;
         }
@@ -163,6 +186,7 @@ public class GameManager_sc : MonoBehaviour {
                             note_sc.destroyPositionY = startPositionY - destroyDelayPositionY;
                             note_sc.destroyDelayTime = destroyDelayTime;
                             note_sc.noteTime = preNoteTime_Ln;
+                            note_sc.channel = channel;
 
                             if      (channel == 51) { noteObj_Line_1.Add(note_sc); preNoteTime_Ln1 = 0; isLongNoteStart_1 = true; }
                             else if (channel == 52) { noteObj_Line_2.Add(note_sc); preNoteTime_Ln2 = 0; isLongNoteStart_2 = true; }
@@ -209,6 +233,69 @@ public class GameManager_sc : MonoBehaviour {
     }
 	
 	void Update () {
+        foreach (var dic in keyDictionary) {
+            if (Input.GetKeyDown(dic.Key)) {
+                dic.Value();
+            }
+        }
+    }
+
+    void KeyL() {
+        if (cur > 1) {
+            cur--;
+        }
+        switch (cur) {
+            case 1: Key1(); break;
+            case 2: Key2(); break;
+            case 3: Key3(); break;
+            case 4: Key4(); break;
+        }
+    }
+    void KeyR() {
+        if (cur < 5) {
+            cur++;
+        }
+        switch (cur) {
+            case 2: Key2(); break;
+            case 3: Key3(); break;
+            case 4: Key4(); break;
+            case 5: Key5(); break;
+        }
+    }
+    void Key1() {
+        cc1.selected = true;
+        cc2.selected = false;
+        cc3.selected = false;
+        cc4.selected = false;
+        cc5.selected = false;
+    }
+    void Key2() {
+        cc1.selected = false;
+        cc2.selected = true;
+        cc3.selected = false;
+        cc4.selected = false;
+        cc5.selected = false;
+    }
+    void Key3() {
+        cc1.selected = false;
+        cc2.selected = false;
+        cc3.selected = true;
+        cc4.selected = false;
+        cc5.selected = false;
+    }
+    void Key4() {
+        cc1.selected = false;
+        cc2.selected = false;
+        cc3.selected = false;
+        cc4.selected = true;
+        cc5.selected = false;
+    }
+    void Key5() {
+        cc1.selected = false;
+        cc2.selected = false;
+        cc3.selected = false;
+        cc4.selected = false;
+        cc5.selected = true;
     }
 
 }

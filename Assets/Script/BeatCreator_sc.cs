@@ -75,30 +75,35 @@ public class BeatCreator_sc : MonoBehaviour {
             if (noteObj_Line_1.Count > noteIndex_1) {
                 if (nextTime >= (noteObj_Line_1[noteIndex_1].noteTime)) {
                     noteObj_Line_1[noteIndex_1].isStart = true;
+                    noteObj_Line_1[noteIndex_1].channel = 1;
                     noteIndex_1++;
                 }
             }
             if (noteObj_Line_2.Count > noteIndex_2) {
                 if (nextTime >= (noteObj_Line_2[noteIndex_2].noteTime)) {
                     noteObj_Line_2[noteIndex_2].isStart = true;
+                    noteObj_Line_2[noteIndex_2].channel = 2;
                     noteIndex_2++;
                 }
             }
             if (noteObj_Line_3.Count > noteIndex_3) {
                 if (nextTime >= (noteObj_Line_3[noteIndex_3].noteTime)) {
                     noteObj_Line_3[noteIndex_3].isStart = true;
+                    noteObj_Line_3[noteIndex_3].channel = 3;
                     noteIndex_3++;
                 }
             }
             if (noteObj_Line_4.Count > noteIndex_4) {
                 if (nextTime >= (noteObj_Line_4[noteIndex_4].noteTime)) {
                     noteObj_Line_4[noteIndex_4].isStart = true;
+                    noteObj_Line_4[noteIndex_4].channel = 4;
                     noteIndex_4++;
                 }
             }
             if (noteObj_Line_5.Count > noteIndex_5) {
                 if (nextTime >= (noteObj_Line_5[noteIndex_5].noteTime)) {
                     noteObj_Line_5[noteIndex_5].isStart = true;
+                    noteObj_Line_5[noteIndex_5].channel = 5;
                     noteIndex_5++;
                 }
             }
@@ -115,30 +120,35 @@ public class BeatCreator_sc : MonoBehaviour {
             if (noteObj_Line_1.Count > noteIndex_1) {
                 if (bgmPlayer.timeSamples >= (noteObj_Line_1[noteIndex_1].noteTime - (secondPerBar * (timeRateBySpeed -1)))  * bgmPlayer.clip.frequency) {
                     noteObj_Line_1[noteIndex_1].isStart = true;
+                    noteObj_Line_1[noteIndex_1].channel = 1;
                     noteIndex_1++;
                 }  
             }
             if (noteObj_Line_2.Count > noteIndex_2) {
                 if (bgmPlayer.timeSamples >= (noteObj_Line_2[noteIndex_2].noteTime - (secondPerBar * (timeRateBySpeed - 1))) * bgmPlayer.clip.frequency) {
                     noteObj_Line_2[noteIndex_2].isStart = true;
+                    noteObj_Line_2[noteIndex_2].channel = 2;
                     noteIndex_2++;
                 } 
             }
             if (noteObj_Line_3.Count > noteIndex_3) {
                 if (bgmPlayer.timeSamples >= (noteObj_Line_3[noteIndex_3].noteTime - (secondPerBar * (timeRateBySpeed - 1))) * bgmPlayer.clip.frequency) {
                     noteObj_Line_3[noteIndex_3].isStart = true;
+                    noteObj_Line_3[noteIndex_3].channel = 3;
                     noteIndex_3++;
                 }
             }
             if (noteObj_Line_4.Count > noteIndex_4) {
                 if (bgmPlayer.timeSamples >= (noteObj_Line_4[noteIndex_4].noteTime - (secondPerBar * (timeRateBySpeed - 1))) * bgmPlayer.clip.frequency) {
                     noteObj_Line_4[noteIndex_4].isStart = true;
+                    noteObj_Line_4[noteIndex_4].channel = 4;
                     noteIndex_4++;
                 }
             }
             if (noteObj_Line_5.Count > noteIndex_5) {
                 if (bgmPlayer.timeSamples >= (noteObj_Line_5[noteIndex_5].noteTime - (secondPerBar * (timeRateBySpeed - 1))) * bgmPlayer.clip.frequency) {
                     noteObj_Line_5[noteIndex_5].isStart = true;
+                    noteObj_Line_5[noteIndex_5].channel = 5;
                     noteIndex_5++;
                 }
             }
